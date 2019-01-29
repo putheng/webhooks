@@ -22,11 +22,13 @@ For Laravel 5 migration
 php artisan migrate
 ```
 #### The model
-Your model should use `Putheng\Role\Traits\HasPermissionsTrait` trait to User model:
+Your model should use `Putheng\Webhooks\Models\WebhookTrait` trait , 
+and add implements `Putheng\Webhooks\WebhookOwner` to `User` model
 ```php
-use Putheng\Role\Traits\HasPermissionsTrait;
+use Putheng\Webhooks\WebhookOwner;
+use Putheng\Webhooks\Models\WebhookTrait;
 
-class User extends Model {
-    use HasPermissionsTrait;
+class User extends Model implements WebhookOwner{
+    use WebhookTrait;
 }
 ```
