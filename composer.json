@@ -1,0 +1,19 @@
+{
+    "name": "putheng/filter",
+    "description": "Authy Laravel two factor package",
+    "authors": [
+        {
+            "name": "Putheng",
+            "email": "puthengemail@gmail.com"
+        }
+    ],
+    "autoload": {
+    	"psr-4": {
+    		"Putheng\\Webhooks\\": "src"
+    	}
+    },
+    "require": {
+    	"php": ">=7.0",
+        "guzzlehttp/guzzle": "^6.3"
+    }
+}
