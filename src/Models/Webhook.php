@@ -7,6 +7,10 @@ use Putheng\Webhooks\Models\WebhookPreference;
 
 class Webhook extends Model
 {
+	protected $fillable = [
+		'url'
+	];
+
     public function enabledFor($preference)
     {
         return $this->preferences->event == $preference && 
