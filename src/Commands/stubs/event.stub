@@ -3,7 +3,6 @@
 namespace DummyNamespace;
 
 use Putheng\Webhooks\Events\WebhookEvent;
-use Putheng\Webhooks\WebhookOwner;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;
 
@@ -11,31 +10,10 @@ class DummyClass implements WebhookEvent
 {
     use Dispatchable, SerializesModels;
 
-    /**
-     * [$user description]
-     * @var [type]
-     */
-    public $owner;
-
     /*
      * [$webhookName description]
      */
     public $webhookName;
-
-    /**
-     * Create a new event instance.
-     *
-     * @return void
-     */
-    public function __construct(WebhookOwner $owner)
-    {
-        $this->owner = $owner;
-    }
-
-    public function webhookOwner()
-    {
-        return $this->owner;
-    }
 
     public function getWebhookName()
     {
@@ -49,7 +27,7 @@ class DummyClass implements WebhookEvent
     public function webhookPayload()
     {
         return json_encode([
-            'name' => $this->owner->name
+            'payload' => []
         ]);
     }
 }

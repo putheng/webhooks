@@ -21,17 +21,6 @@ For Laravel 5 migration
 `php artisan migrate`
 
 #### Model
-Your model should use `Putheng\Webhooks\Models\WebhookTrait` trait , 
-add implements `Putheng\Webhooks\WebhookOwner` interface to `User` model
-```php
-use Putheng\Webhooks\WebhookOwner;
-use Putheng\Webhooks\Models\WebhookTrait;
-
-class User extends Model implements WebhookOwner
-{
-    use WebhookTrait;
-}
-```
 
 #### Event
 Add `WebhookEventSubscriber` to `protected $subscribe` property on `EventServiceProvider`.

@@ -4,6 +4,7 @@ namespace Putheng\Webhooks\Listeners;
 
 use Putheng\Webhooks\Events\WebhookEvent;
 use Putheng\Webhooks\Jobs\FireWebhook;
+use Putheng\Webhooks\Models\Webhook;
 
 class WebhookEventSubscriber
 {
@@ -17,8 +18,8 @@ class WebhookEventSubscriber
         if (!($event = head($data)) instanceof WebhookEvent) {
             return;
         }
-
-        $event->webhookOwner()->webhooks->each(function ($webhook) use ($event) {
+        
+        Webhook::get()->each(function ($webhook) use ($event) {
             if (!$webhook->enabledFor($event->getWebhookName())) {
                 return;
             }
