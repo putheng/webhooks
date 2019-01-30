@@ -1,6 +1,6 @@
 {
     "name": "putheng/webhooks",
-    "description": "Authy Laravel two factor package",
+    "description": "Laravel webhooks package",
     "authors": [
         {
             "name": "Putheng",
