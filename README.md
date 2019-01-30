@@ -20,6 +20,19 @@ Putheng\Webhooks\WebhooksServiceProvider::class,
 For Laravel 5 migration
 `php artisan migrate`
 
+#### The model
+Your model should use `Putheng\Webhooks\Models\WebhookTrait` trait , 
+add implements `Putheng\Webhooks\WebhookOwner` interface to `User` model
+```php
+use Putheng\Webhooks\WebhookOwner;
+use Putheng\Webhooks\Models\WebhookTrait;
+
+class User extends Model implements WebhookOwner
+{
+    use WebhookTrait;
+}
+```
+
 #### The event
 Add `WebhookEventSubscriber` to `protected $subscribe` property on `EventServiceProvider`.
 We can create if `protected $subscribe` property doesn't exists
@@ -33,21 +46,14 @@ Create an event
 `php artisan event:webhook EventName`
 
 Update`public $webhookName` property on `EventName` that we just generated.
-this name name should match `event` column on `webhook_preferences` table.
+this name should match `event` column on `webhook_preferences` table.
 by default this use snake_case of reflection class. example: `EventName` will be `event_name` by default 
 ```php
 public $webhookName = 'name';
 ```
 
-#### The model
-Your model should use `Putheng\Webhooks\Models\WebhookTrait` trait , 
-add implements `Putheng\Webhooks\WebhookOwner` interface to `User` model
-```php
-use Putheng\Webhooks\WebhookOwner;
-use Putheng\Webhooks\Models\WebhookTrait;
+#### Queue
+by default webhook event queue will be set onQueue to `webhooks`.
+if we set queue connection to database, artisan command should be
+`php artisan queue:listen --queue=webhooks`
 
-class User extends Model implements WebhookOwner
-{
-    use WebhookTrait;
-}
-```
