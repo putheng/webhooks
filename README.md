@@ -1,7 +1,7 @@
 Installation
 ------------
 
-Require this package with composer. It is recommended to only require the package for development.
+Require this package with composer.
 ```
 composer require putheng/webhooks
 ```
@@ -21,14 +21,23 @@ For Laravel 5 migration
 ```php
 php artisan migrate
 ```
+#### Event subscriber
+Add `WebhookEventSubscriber` to `protected $subscribe` property on `EventServiceProvider`
+```php
+protected $subscribe = [
+    \Putheng\Webhooks\Listeners\WebhookEventSubscriber::class
+];
+```
+
 #### The model
 Your model should use `Putheng\Webhooks\Models\WebhookTrait` trait , 
-and add implements `Putheng\Webhooks\WebhookOwner` to `User` model
+add implements `Putheng\Webhooks\WebhookOwner` interface to `User` model
 ```php
 use Putheng\Webhooks\WebhookOwner;
 use Putheng\Webhooks\Models\WebhookTrait;
 
-class User extends Model implements WebhookOwner{
+class User extends Model implements WebhookOwner
+{
     use WebhookTrait;
 }
 ```
