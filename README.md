@@ -16,11 +16,11 @@ If you don't use auto-discovery, add the ServiceProvider to the providers array 
 Putheng\Webhooks\WebhooksServiceProvider::class,
 ```
 
-#### The schema
+#### Schema
 For Laravel 5 migration
 `php artisan migrate`
 
-#### The model
+#### Model
 Your model should use `Putheng\Webhooks\Models\WebhookTrait` trait , 
 add implements `Putheng\Webhooks\WebhookOwner` interface to `User` model
 ```php
@@ -33,7 +33,7 @@ class User extends Model implements WebhookOwner
 }
 ```
 
-#### The event
+#### Event
 Add `WebhookEventSubscriber` to `protected $subscribe` property on `EventServiceProvider`.
 We can create if `protected $subscribe` property doesn't exists
 ```php
