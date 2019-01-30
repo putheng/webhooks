@@ -18,15 +18,25 @@ Putheng\Webhooks\WebhooksServiceProvider::class,
 
 #### The schema
 For Laravel 5 migration
-```php
-php artisan migrate
-```
-#### Event subscriber
-Add `WebhookEventSubscriber` to `protected $subscribe` property on `EventServiceProvider`
+`php artisan migrate`
+
+#### The event
+Add `WebhookEventSubscriber` to `protected $subscribe` property on `EventServiceProvider`.
+We can create if `protected $subscribe` property doesn't exists
 ```php
 protected $subscribe = [
     \Putheng\Webhooks\Listeners\WebhookEventSubscriber::class
 ];
+```
+
+Create an event
+`php artisan event:webhook EventName`
+
+Update`public $webhookName` property on `EventName` that we just generated.
+this name name should match `event` column on `webhook_preferences` table.
+by default this use snake_case of reflection class. example: `EventName` will be `event_name` by default 
+```php
+public $webhookName = 'name';
 ```
 
 #### The model

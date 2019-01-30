@@ -16,7 +16,8 @@ class CreateWebhookPreferencesTable extends Migration
         Schema::create('webhook_preferences', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('webhook_id')->unsigned()->index();
-            $table->boolean('video_encoded');
+            $table->string('event');
+            $table->boolean('enable');
             $table->timestamps();
 
             $table->foreign('webhook_id')->references('id')->on('webhooks');

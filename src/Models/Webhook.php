@@ -9,7 +9,8 @@ class Webhook extends Model
 {
     public function enabledFor($preference)
     {
-        return (bool) optional($this->preferences)->{$preference} === true;
+        return $this->preferences->event == $preference && 
+        		(bool) $this->preferences->enable == true;
     }
 
     public function preferences()

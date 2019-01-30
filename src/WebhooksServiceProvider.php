@@ -3,6 +3,7 @@
 namespace Putheng\Webhooks;
 
 use Illuminate\Support\ServiceProvider;
+use Putheng\Webhooks\Commands\EventMakeCommand;
 
 class WebhooksServiceProvider extends ServiceProvider
 {
@@ -14,6 +15,12 @@ class WebhooksServiceProvider extends ServiceProvider
     public function boot()
     {
         $this->loadMigrationsFrom(__DIR__ . '/../migrations');
+        
+        if ($this->app->runningInConsole()) {
+            $this->commands([
+                EventMakeCommand::class,
+            ]);
+        }
     }
 
     /**
